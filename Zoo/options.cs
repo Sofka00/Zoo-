@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
@@ -9,46 +10,77 @@ namespace Zoo
 {
     public class Animals
     {
-        public string Kind { get; set; }
-        public string Biom { get; set; }
-        public int Area { get; set; }
-
-        public string[] Food { get; set; }
-        public string Predador { get; set; }
-        public string Sound { get; set; }
-        public string Name { get; set; }
-        public double Quantity { get; set; }
-        public int Age
+        public Animals(string name, string kind, string biom, int area, string[] food, string predator, string sound, double sitost, double maxSitost,
+            int age)
         {
-            get
-            {
-                return _age;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    _age = value;
-                }
-            }
+            Name = name;
+            Kind = kind;
+            Biom = biom;
+            Area = area;
+            Food = food;
+            Predator = predator;
+            Sound = sound;
+            Sitost = sitost;
+            MaxSitost = maxSitost;
+            Age = age;
         }
-        private int _age;
 
+        public Animals()
+        {
+        }
+
+        public string Name { get; set; }
+        protected string Kind { get; set; }
+        protected string Biom { get; set; }
+        protected int Area { get; set; }
+        protected string[] Food { get; set; }
+        protected string Predator { get; set; }
+        protected string Sound { get; set; }
+        protected double Sitost { get; set; }
+        protected double MaxSitost { get; set; }
+        protected int Age { get; set; }
 
         public void Say()
         {
             Console.WriteLine($"{Name} {Sound} ");
         }
 
-        public void Eat()
+        public string Eat(string food, double count)
         {
-            string result = "";
-            foreach (var item in Food)
+            if (count<0)
             {
-                result += " ";
-                result+= item;
+                throw new ArgumentException("MENSHE NULL");
             }
-            Console.WriteLine($"{Name} Eat{result} ");
+            string result = "";
+
+            foreach (string item in Food)
+            {
+                if (item == food && Sitost < MaxSitost)
+                {
+                    Sitost += count;
+                    result = $"{Name} est";
+                    break;
+                }
+                else
+                {
+                    result = $"{Name} ne est";
+                    break;
+                }
+            }
+                return result;
+
+        }
+
+        public void CountOfFood()
+        {
+            if (Sitost >= MaxSitost)
+            {
+                Console.WriteLine($"{Name} naelsya");
+            }
+            else
+            {
+                Console.WriteLine($"{Name} goloden");
+            }
         }
 
         public void Play()
@@ -57,9 +89,9 @@ namespace Zoo
         }
         public void EatыPerDay()
         {
-            Console.WriteLine($"{Name} eats per day {Quantity} kg."); 
+            Console.WriteLine($"{Name} eats per day {MaxSitost} kg.");
         }
 
-
     }
+
 }
