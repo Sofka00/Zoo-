@@ -1,17 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Zoo
 {
     public class Animals
     {
+        public string Name { get; set; }
+        protected string Kind { get; set; }
+        protected string Biom { get; set; }
+        protected int Area { get; set; }
+        protected string[] Food { get; set; }
+        protected string Predator { get; set; }
+        protected string Sound { get; set; }
+        protected double Sitost { get; set; }
+        protected double MaxSitost { get; set; }
+        protected int Age { get; set; }
+
         public Animals(string name, string kind, string biom, int area, string[] food, string predator, string sound, double sitost, double maxSitost,
-            int age)
+    int age)
         {
             Name = name;
             Kind = kind;
@@ -28,18 +34,6 @@ namespace Zoo
         public Animals()
         {
         }
-
-        public string Name { get; set; }
-        protected string Kind { get; set; }
-        protected string Biom { get; set; }
-        protected int Area { get; set; }
-        protected string[] Food { get; set; }
-        protected string Predator { get; set; }
-        protected string Sound { get; set; }
-        protected double Sitost { get; set; }
-        protected double MaxSitost { get; set; }
-        protected int Age { get; set; }
-
         public void Say()
         {
             Console.WriteLine($"{Name} {Sound} ");
@@ -91,7 +85,6 @@ namespace Zoo
         {
             Console.WriteLine($"{Name} eats per day {MaxSitost} kg.");
         }
-
     }
 
 }
