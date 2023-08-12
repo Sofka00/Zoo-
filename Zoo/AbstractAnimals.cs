@@ -3,37 +3,22 @@
 
 namespace Zoo
 {
-    public class Animals
+    public abstract class AbstractAnimals
     {
+
         public string Name { get; set; }
-        protected string Kind { get; set; }
-        protected string Biom { get; set; }
-        protected int Area { get; set; }
-        protected string[] Food { get; set; }
-        protected string Predator { get; set; }
-        protected string Sound { get; set; }
-        protected double Sitost { get; set; }
-        protected double MaxSitost { get; set; }
-        protected int Age { get; set; }
-
-        public Animals(string name, string kind, string biom, int area, string[] food, string predator, string sound, double sitost, double maxSitost,
-    int age)
-        {
-            Name = name;
-            Kind = kind;
-            Biom = biom;
-            Area = area;
-            Food = food;
-            Predator = predator;
-            Sound = sound;
-            Sitost = sitost;
-            MaxSitost = maxSitost;
-            Age = age;
-        }
-
-        public Animals()
-        {
-        }
+       public string Kind {  get; protected set; }
+        public string Biom { get; protected set; }
+        public int Area { get; protected set; }
+        public string[] Food { get; protected set; }
+        public string Predator { get; protected set; }
+        public string Sound { get; protected set; }
+        public double Sitost { get; protected set; }
+        public double MaxSitost { get; protected set; }
+        public  int Age { get; protected set; }
+        public abstract string Play(AbstractAnimals animal);
+        public abstract string Game(AbstractAnimals animal);
+       
         public void Say()
         {
             Console.WriteLine($"{Name} {Sound} ");
@@ -77,11 +62,7 @@ namespace Zoo
             }
         }
 
-        public void Play()
-        {
-            Console.WriteLine($"{Name} Play");
-        }
-        public void EatыPerDay()
+        public void EatPerDay()
         {
             Console.WriteLine($"{Name} eats per day {MaxSitost} kg.");
         }
